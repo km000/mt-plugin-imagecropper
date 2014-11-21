@@ -1,16 +1,17 @@
 <mt:setvarblock name="page_title"><__trans phrase="Create Thumbnail for [_1]" params="<$mt:var name="asset_label" encode_html="1"$>"></mt:setvarblock>
 
+<mt:StaticWebPath regex_replace="/https?:\/\/[^\/]+/","" setvar="url_static_rel_web_path" />
 <mt:setvarblock name="js_include" append="1">
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/ui.core.js"></script>
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/ui.dialog.js"></script>
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/ui.resizable.js"></script>
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/ui.draggable.js"></script>
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/jquery.dimensions.js"></script>
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/jquery.scrollable-1.0.1.min.js"></script>
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/jquery.scrollTo.min.js"></script>
-    <script src="<mt:StaticWebPath>plugins/ImageCropper/js/jquery.Jcrop.js"></script>
-<mt:ignore>    <script src="<mt:StaticWebPath>jqueryui/ui.datepicker.js"></script></mt:ignore>
-    <script src="<mt:StaticWebPath>jquery/jquery.mt.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/ui.core.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/ui.dialog.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/ui.resizable.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/ui.draggable.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/jquery.dimensions.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/jquery.scrollable-1.0.1.min.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/jquery.scrollTo.min.js"></script>
+    <script src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/js/jquery.Jcrop.js"></script>
+<mt:ignore>    <script src="<mt:getVar name="url_static_rel_web_path" />jqueryui/ui.datepicker.js"></script></mt:ignore>
+    <script src="<mt:getVar name="url_static_rel_web_path" />jquery/jquery.mt.js"></script>
     <script type="text/javascript">
     var coords;
     var protos    = Array();
@@ -129,8 +130,8 @@
       return true;
     }
     </script>
-    <link rel="stylesheet" href="<mt:StaticWebPath>plugins/ImageCropper/css/app.css" type="text/css">
-    <link rel="stylesheet" href="<mt:StaticWebPath>plugins/ImageCropper/css/jquery.Jcrop.css" type="text/css">
+    <link rel="stylesheet" href="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/css/app.css" type="text/css">
+    <link rel="stylesheet" href="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/css/jquery.Jcrop.css" type="text/css">
     <style type="text/css">
         #step1 { margin-top: 30px; }
         #step2 { margin-top: 240px; }
@@ -188,8 +189,8 @@
     <div class="proto_preview">
       <mt:if name="thumbnail_url"><img src="<$mt:var name="thumbnail_url" replace="/\","/" replace="\","/"$>" <mt:unless name="smaller_vp"><mt:if name="is_tall">height="135"<mt:else>width="175"</mt:if></mt:unless> /><mt:else><span>?</span></mt:if>
     </div>
-    <div class="proto_action"><a href="javascript:void(0);"><img src="<$mt:StaticWebPath$>plugins/ImageCropper/css/delete.gif" /></a></div>
-    <div class="proto_progress"><img src="<$mt:StaticWebPath$>plugins/ImageCropper/css/indicator.gif" width="16" height="16" /></div>
+    <div class="proto_action"><a href="javascript:void(0);"><img src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/css/delete.gif" /></a></div>
+    <div class="proto_progress"><img src="<mt:getVar name="url_static_rel_web_path" />plugins/ImageCropper/css/indicator.gif" width="16" height="16" /></div>
     <div class="proto_size"><$mt:var name="cropped_size" default=""$></div>
     <div class="proto_info">
       <$mt:var name="proto_label"$><br />
