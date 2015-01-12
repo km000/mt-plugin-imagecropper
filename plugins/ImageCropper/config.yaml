@@ -26,13 +26,13 @@ upgrade_functions:
         code: $ImageCropper::ImageCropper::Upgrade::AbbrevTables::run
 
 config_settings:
-  DefaultCroppedImageText: 
+  DefaultCroppedImageText:
     default: 'Created by "Image Cropper"'
 
 blog_config_template: tmpl/blog_config.tmpl
 
 settings:
-  cropped_text: 
+  cropped_text:
     default: ''
     scope: blog
   default_compress:
@@ -57,7 +57,7 @@ object_types:
     thumbnail_prototype_map: ImageCropper::PrototypeMap
 applications:
   cms:
-    menus: 
+    menus:
       prefs:image_cropper:
         label: Thumbnail Prototypes
         mode: list_prototypes
@@ -94,7 +94,7 @@ applications:
       imagecropper_delete_crop: $ImageCropper::ImageCropper::Plugin::delete_crop
     page_actions:
       asset:
-        gen_thumbnails: 
+        gen_thumbnails:
           label: 'Generate Thumbnails'
           order: 100
           mode: manage_thumbnails
@@ -135,7 +135,7 @@ list_properties:
           );
           my $label = $obj->label;
           my $out = qq {
-            <span><a href="$editpath">$label</a></span>
+            <span><a href="$editpath" class="action-link mt-open-dialog">$label</a></span>
           };
           return $out;
         }
