@@ -1,7 +1,7 @@
 id: ImageCropper
 name: Image Cropper
 description: <__trans phrase="Allows users to define a set of thumbnail prototypes that others can easily generate using a drag-and-drop image cropping tool.">
-version: 1.0.26
+version: 1.0.27
 schema_version: 8
 l10n_class: ImageCropper::L10N
 author_name: Koji Matsumoto.
