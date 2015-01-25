@@ -119,7 +119,7 @@ sub hdlr_cropped_asset {
                 || MT->model('blog')->load( $asset->blog_id );
     my $blog_id = defined $args->{blog_id}  ? $args->{blog_id}
                 : defined $asset->blog_id   ? $asset->blog_id
-                : ref $blog                 ? $blog->id 
+                : ref $blog                 ? $blog->id
                 : 0;
     my $out;
     my $cropped_asset = find_cropped_asset($blog_id,$asset,$label);
@@ -322,7 +322,7 @@ sub del_prototype {
     $app->validate_magic()
       or return MT->translate( 'Permission denied.' );
     my $user = $app->user;
-    if (! is_user_can( $blog, $user, 'edit_templates' ) ) {
+    if (! is_user_can( $blog, $user, 'image_cropper_manage_crop_prototype' ) ) {
         return MT->translate( 'Permission denied.' );
     }
     my $q = $app->can('query') ? $app->query : $app->param;
@@ -344,7 +344,7 @@ sub save_prototype {
     $app->validate_magic()
       or return MT->translate( 'Permission denied.' );
     my $user = $app->user;
-    if (! is_user_can( $blog, $user, 'edit_templates' ) ) {
+    if (! is_user_can( $blog, $user, 'image_cropper_manage_crop_prototype' ) ) {
         return MT->translate( 'Permission denied.' );
     }
     my $param;
@@ -378,7 +378,7 @@ sub edit_prototype {
         return MT->translate( 'Invalid request.' );
     }
     my $user = $app->user;
-    if (! is_user_can( $blog, $user, 'edit_templates' ) ) {
+    if (! is_user_can( $blog, $user, 'image_cropper_manage_crop_prototype' ) ) {
         return MT->translate( 'Permission denied.' );
     }
 
@@ -472,7 +472,7 @@ sub list_prototypes {
         return MT->translate( 'Invalid request.' );
     }
     my $user = $app->user;
-    if (! is_user_can( $blog, $user, 'edit_templates' ) ) {
+    if (! is_user_can( $blog, $user, 'image_cropper_manage_crop_prototype' ) ) {
         return MT->translate( 'Permission denied.' );
     }
     my ($params) = @_ || {};
@@ -548,7 +548,7 @@ sub gen_thumbnails_start {
     $app->validate_magic()
       or return MT->translate( 'Permission denied.' );
     my $user = $app->user;
-    if (! is_user_can( $blog, $user, 'upload' ) ) {
+    if (! is_user_can( $blog, $user, 'image_cropper_manage_thumbnail' ) ) {
         return MT->translate( 'Permission denied.' );
     }
 
@@ -655,7 +655,7 @@ sub delete_crop {
     $app->validate_magic()
       or return MT->translate( 'Permission denied.' );
     my $user = $app->user;
-    if (! is_user_can( $blog, $user, 'edit_assets' ) ) {
+    if (! is_user_can( $blog, $user, 'image_cropper_manage_thumbnail' ) ) {
         return MT->translate( 'Permission denied.' );
     }
     my $q    = $app->can('query') ? $app->query : $app->param;
@@ -699,7 +699,7 @@ sub crop {
     $app->validate_magic()
       or return MT->translate( 'Permission denied.' );
     my $user = $app->user;
-    if (! is_user_can( $blog, $user, 'edit_assets' ) ) {
+    if (! is_user_can( $blog, $user, 'image_cropper_manage_thumbnail' ) ) {
         return MT->translate( 'Permission denied.' );
     }
     my $q = $app->can('query') ? $app->query : $app->param;
@@ -929,7 +929,7 @@ sub _box_dim {
 }
 
 sub doLog {
-    my ($msg) = @_; 
+    my ($msg) = @_;
     return unless defined($msg);
     require MT::Log;
     my $log = MT::Log->new;

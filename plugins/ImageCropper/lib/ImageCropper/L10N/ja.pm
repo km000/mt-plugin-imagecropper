@@ -62,8 +62,10 @@ use vars qw( %Lexicon );
 		=> 'Enter in a very short label that will be used to help you identify any thumbnail derived from this prototype.',
 	'Enter in the max width of the thumbnail.' => 'サムネイルの最大幅を入力してください。',
 	'Enter in the max height of the thumbnail.' => 'サムネイルの最大縦幅を入力してください。',
-	
+	'manage Thumbnail Crop Prototype' => '画像トリミングのひな型の管理',
+	'manage Crop' => '画像のトリミング',
+	'When you want to disable the plug-in , if the authority of the settings for each role "manage Thumbnail Crop Prototype" "manage Crop" is valid , because the error occurs in the edit screen of the roll , and to advance disable these privileges please be .' => '※プラグインを無効にする際は、各ロールの設定の権限 "画像トリミングのひな型の管理" "画像のトリミング"が有効である場合、ロールの編集画面でエラーが出るので、これら権限を予め無効にしてください。',
+
 );
 
 1;
-

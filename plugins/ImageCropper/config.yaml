@@ -1,12 +1,28 @@
 id: ImageCropper
 name: Image Cropper
-description: <__trans phrase="Allows users to define a set of thumbnail prototypes that others can easily generate using a drag-and-drop image cropping tool.">
-version: 1.0.27
+description: >
+   <__trans phrase="Allows users to define a set of thumbnail prototypes that others can easily generate using a drag-and-drop image cropping tool.">
+   <br /><__trans phrase='When you want to disable the plug-in , if the authority of the settings for each role "manage Thumbnail Crop Prototype" "manage Crop" is valid , because the error occurs in the edit screen of the roll , and to advance disable these privileges please be .'>
+version: 1.0.28
 schema_version: 8
 l10n_class: ImageCropper::L10N
 author_name: Koji Matsumoto.
 author_link: http://www.km92.net/knowledge/
 plugin_link: https://github.com/km000/mt-plugin-imagecropper
+
+permissions:
+  blog.image_cropper_manage_crop_prototype:
+    group: blog_upload
+    label: manage Thumbnail Crop Prototype
+    order: 350
+    permitted_action:
+      pa_image_cropper_manage_crop_prototype: 1
+  blog.image_cropper_manage_thumbnail:
+    group: blog_upload
+    label: manage Crop
+    order: 350
+    permitted_action:
+      pa_image_cropper_manage_thumbnail: 1
 
 callbacks:
     MT::App::CMS::init_app: $ImageCropper::ImageCropper::Plugin::init_app
@@ -58,28 +74,16 @@ object_types:
 applications:
   cms:
     menus:
-      prefs:image_cropper:
-        label: Thumbnail Prototypes
-        mode: list_prototypes
-        order: 500
-        permission: edit_templates
-        view: blog
-      design:image_cropper:
-        label: Thumbnail Prototypes
-        mode: list_prototypes
-        order: 500
-        permission: edit_templates
-        view:
-          - blog
-          - website
-        condition: $ImageCropper::ImageCropper::Util::is_mt5
-      design:crop_prototypes:
+      image_cropper:
+        label: Image Cropper
+        order: 1000
+      image_cropper:crop_prototypes:
         label: Crop Prototypes
         mode: list
         args:
           _type: thumbnail_prototype
         order: 500
-        permission: edit_templates
+        permission: image_cropper_manage_crop_prototype
         view:
           - blog
           - website
@@ -98,7 +102,7 @@ applications:
           label: 'Generate Thumbnails'
           order: 100
           mode: manage_thumbnails
-          permission: upload
+          permission: image_cropper_manage_thumbnail
           condition: $ImageCropper::ImageCropper::Util::asset_is_image
 listing_screens:
   thumbnail_prototype:
@@ -290,7 +294,13 @@ list_properties:
                   $out = qq{
                     <span class="title"><a href="$edit_link">$label</a></span>$userpic_sticker
                     <span class="view">&nbsp;<a href="$url"><img src="$view_img" alt="$view" /></a></span>
-                    <span class="crop"><a href="$croppath"><img src="$crop_img" alt="$crop" /></a></span>
+                  };
+                  if ( $app->can_do('pa_image_cropper_manage_thumbnail') ) {
+                    $out .= qq{
+                      <span class="crop"><a href="$croppath"><img src="$crop_img" alt="$crop" /></a></span>
+                    };
+                  }
+                  $out .= qq{
                     <div class="thumbnail picture small">
                       <img alt="" src="$thumbnail_url" style="padding: ${thumbnail_height_offset}px ${thumbnail_width_offset}px" />
                     </div>
